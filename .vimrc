@@ -13,8 +13,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'dense-analysis/ale'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'preservim/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'raimondi/delimitmate'
@@ -22,7 +22,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kaicataldo/material.vim'
-Plugin 'mhinz/vim-startify'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,9 +52,11 @@ let maplocalleader = "  "
 
 
 "----Usability and Functionality----------------------------------------------"
+" Yank to clipboard
+set clipboard=unnamedplus,autoselect,exclude:cons\\\\|linux
 
 " Capture mouse
-set mouse=a
+" set mouse=r
 
 " Case-insensitive search expt when CAP
 set ignorecase
@@ -131,7 +132,7 @@ let g:ale_linters = {
             \}
 let g:ale_fixers = {
             \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \ 'python': ['black'],
+            \ 'python': ['black', 'isort'],
             \}
 let g:ale_fix_on_save = 1
 

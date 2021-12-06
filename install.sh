@@ -6,21 +6,23 @@ INFO() {
 WARN() {
     echo 2>&1 "WARN: $@"
 }
+ERROR() {
+    echo 2>&1 "ERROR: $@" && exit 1
+}
 
 CONFIRM_Y="[Yy]"
 CONFIRM_N="[Nn]"
 
 # This script must be executed from within the .dotfiles directory
 INSTALL_DIR=$(pwd -P)
-[[ $(basename ${INSTALL_DIR}) != ".dotfiles" ]] && WARN "Please execute script from .dotfiles directory" && exit 1
+[[ $(basename ${INSTALL_DIR}) != ".dotfiles" ]] && ERROR "Please execute script from .dotfiles directory"
 DOTFILES=(.environment .tmux.conf .tmux.conf.local .vimrc)
 
 # Make backups of current dotfiles
 MAKE_BACKUPS() {
     mkdir ~/.dotfiles_backup
     for dotfile in ${DOTFILES[@]}; do
-        cp -L ~/${dotfile} ~/.dotfiles_backup
-        rm -f ~/${dotfile}
+        cp -L ~/${dotfile} ~/.dotfiles_backup && rm -f ~/${dotfile}
     done
 }
 if [[ -d ~/.dotfiles_backup ]]; then
@@ -96,7 +98,6 @@ if [ ${machine} == "Mac" ]; then
         cmake
         tmux
         grip
-        sshfs
         coreutils
         universal-ctags
     )
@@ -116,14 +117,6 @@ fi
 # Set up Vundle plugins
 vim -c ":PluginInstall" -c "qa!"
 
-# If using YouCompleteMe, install it
-INFO "Install YouCompleteMe to utilize plugin"
-#if [ -d ~/.vim/bundle/YouCompleteMe ]; then
-#    cd ~/.vim/bundle/YouCompleteMe
-#    ./install.py
-#    cd ${INSTALL_DIR}
-#fi
-
 # Source environment file
 if ! grep -Fxq "source ~/.environment" ~/.bash_profile; then
     echo ". ~/.environment" >> ~/.bash_profile
@@ -133,6 +126,7 @@ fi
 DEFAULT_PYTHON_PACKAGES=(
     pylint
     black
+    isort
 )
 if [[ ! -z $(which python3) ]]; then
     read -p "Python3 found on system at $(which python3); create default virtual environment with default packages? [Y/n]: " CREATE_VENV
