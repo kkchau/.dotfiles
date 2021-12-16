@@ -1,6 +1,8 @@
 # Environment for all shells
 # Source this document at the end of each shell login file
 
+[[ ! -z $(command -v neofetch) ]] && neofetch
+
 cat << WELCOME_MESSAGE
 # Currently logged in as $(whoami)@$(hostname)
 # vim: $(command -v vim); $([[ ! -z $(command -v vim) ]] && 2>&1 vim --version | head -n 1)
