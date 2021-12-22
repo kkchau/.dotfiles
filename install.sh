@@ -16,7 +16,10 @@ CONFIRM_N="[Nn]"
 # This script must be executed from within the .dotfiles directory
 INSTALL_DIR=$(pwd -P)
 [[ $(basename ${INSTALL_DIR}) != ".dotfiles" ]] && ERROR "Please execute script from .dotfiles directory"
-DOTFILES=(.environment .tmux.conf .tmux.conf.local .vimrc)
+DOTFILES=(
+    .environment .tmux.conf .tmux.conf.local .vimrc
+    .config/nvim/init.vim
+)
 
 # Make backups of current dotfiles
 MAKE_BACKUPS() {
@@ -99,7 +102,6 @@ if [ ${machine} == "Mac" ]; then
         tmux
         grip
         coreutils
-        universal-ctags
     )
     echo "Installing brew packages"
     for package in ${BREW_INSTALL_TARGETS[@]}; do
