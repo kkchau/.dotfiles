@@ -128,7 +128,7 @@ vim -c ":PluginInstall" -c "qa!"
 
 # Source environment file
 if ! grep -Fxq "source ~/.environment" ~/.bash_profile; then
-    echo ". ~/.environment" >> ~/.bash_profile
+    echo "source ~/.environment" >> ~/.bash_profile
 fi
 
 # Build Python3 Virtual Environment with pre-loaded packages
