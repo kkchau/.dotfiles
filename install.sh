@@ -19,6 +19,7 @@ INSTALL_DIR=$(pwd -P)
 DOTFILES=(
     .environment .tmux.conf .tmux.conf.local .vimrc
     .config/nvim/init.vim
+    .config/alacritty/alacritty.yml
 )
 
 # Make backups of current dotfiles
