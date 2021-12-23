@@ -25,7 +25,7 @@ DOTFILES=(
 MAKE_BACKUPS() {
     mkdir ~/.dotfiles_backup
     for dotfile in ${DOTFILES[@]}; do
-        cp -L ~/${dotfile} ~/.dotfiles_backup && rm -f ~/${dotfile}
+        [[ -f ~/${dotfile} ]] && cp -L ~/${dotfile} ~/.dotfiles_backup && rm -f ~/${dotfile}
     done
 }
 if [[ -d ~/.dotfiles_backup ]]; then
@@ -44,6 +44,10 @@ fi
 INFO "Symlinking dotfiles..."
 for dotfile in ${DOTFILES[@]}; do
     INFO "Linking from ${INSTALL_DIR}/${dotfile} to ${HOME}/${dotfile}"
+    if [[ $(dirname ${dotfile}) != '.' ]]; then
+        INFO "Making directory ~/$(dirname ${dotfile})"
+        mkdir -p ~/$(dirname ${dotfile})
+    fi
     ln -s ${INSTALL_DIR}/${dotfile} ~/${dotfile}
 done
 
