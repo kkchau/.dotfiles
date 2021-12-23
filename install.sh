@@ -45,7 +45,7 @@ fi
 INFO "Symlinking dotfiles..."
 for dotfile in ${DOTFILES[@]}; do
     INFO "Linking from ${INSTALL_DIR}/${dotfile} to ${HOME}/${dotfile}"
-    if [[ $(dirname ${dotfile}) != '.' ]]; then
+    if [[ $(dirname ${dotfile}) != '.' && ! -d ~/$(dirname ${dotfile} ]]; then
         INFO "Making directory ~/$(dirname ${dotfile})"
         mkdir -p ~/$(dirname ${dotfile})
     fi
