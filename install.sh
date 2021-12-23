@@ -101,6 +101,8 @@ if [ ${machine} == "Mac" ]; then
     fi
 
     BREW_INSTALL_TARGETS=(
+        asdf
+        neovim
         macvim
         cmake
         tmux
