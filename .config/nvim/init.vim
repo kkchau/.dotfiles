@@ -32,6 +32,9 @@ Plug 'preservim/nerdtree'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'BurntSushi/ripgrep'
 
+" Markdown
+Plug 'ellisonleao/glow.nvim'
+
 " Theme
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
