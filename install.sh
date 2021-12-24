@@ -45,7 +45,7 @@ fi
 INFO "Symlinking dotfiles..."
 for dotfile in ${DOTFILES[@]}; do
     INFO "Linking from ${INSTALL_DIR}/${dotfile} to ${HOME}/${dotfile}"
-    if [[ $(dirname ${dotfile}) != '.' && ! -d ~/$(dirname ${dotfile} ]]; then
+    if [[ $(dirname ${dotfile}) != '.' && ! -d ~/$(dirname ${dotfile}) ]]; then
         INFO "Making directory ~/$(dirname ${dotfile})"
         mkdir -p ~/$(dirname ${dotfile})
     fi
@@ -77,7 +77,7 @@ case "${unameOut}" in
     MINGW*)     machine=MinGw;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
-echo "Currently using a ${machine} OS"
+INFO "Currently using a ${machine} OS"
 
 if [ ${machine} == "Mac" ]; then
 
@@ -86,7 +86,7 @@ if [ ${machine} == "Mac" ]; then
 
     # Mac specific SSH config
     if ! grep -Fxq "Host *" ~/.ssh/config; then
-        echo "Updating SSH config"
+        INFO "Updating SSH config"
         echo "Host *
     AddKeysToAgent yes
     UseKeychain yes
@@ -95,12 +95,7 @@ if [ ${machine} == "Mac" ]; then
         ssh-add -K ~/.ssh/id_rsa
     fi
 
-    # Brew
-    if ! command -v brew; then
-        echo "Installing Homebrew"
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
-
+    # Homebrew
     BREW_INSTALL_TARGETS=(
         asdf
         neovim
@@ -110,25 +105,37 @@ if [ ${machine} == "Mac" ]; then
         grip
         coreutils
     )
-    echo "Installing brew packages"
-    for package in ${BREW_INSTALL_TARGETS[@]}; do
-        brew install ${package}
-    done
+
+    INFO "Requesting to install the following brew targets:"
+    INFO "${BREW_INSTALL_TARGETS[@]}"
+    read -p "Install homebrew and brew packages? [Y/n]: " INSTALL_BREW
+
+    if [[ ${INSTALL_DIR} =~ ${CONFIRM_Y} ]]; then
+        if ! command -v brew; then
+            INFO "Installing Homebrew"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
+
+        INFO "Installing brew packages"
+        for package in ${BREW_INSTALL_TARGETS[@]}; do
+            brew install ${package}
+        done
+    fi
 
 fi
 
-# Get Vundle
-INFO "Installing Vundle for Vim plugins"
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
-
-# Set up Vundle plugins
-vim -c ":PluginInstall" -c "qa!"
+## Get Vundle
+#INFO "Installing Vundle for Vim plugins"
+#if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+#    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#fi
+#
+## Set up Vundle plugins
+#vim -c ":PluginInstall" -c "qa!"
 
 # Source environment file
 if ! grep -Fxq "source ~/.environment" ~/.bash_profile; then
-    echo ". ~/.environment" >> ~/.bash_profile
+    echo "source ~/.environment" >> ~/.bash_profile
 fi
 
 # Build Python3 Virtual Environment with pre-loaded packages
