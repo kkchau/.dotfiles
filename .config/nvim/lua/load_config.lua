@@ -7,7 +7,7 @@ M.__index = M
 M.init = function()
     --require("plugins.web-devicons").init()
     --require("plugins.autopairs").init()
-    --require("plugins.treesitter").init()
+    require("plugins.treesitter").init()
     --require("plugins.build"):init()
     --require("plugins.bufferline").init()
 

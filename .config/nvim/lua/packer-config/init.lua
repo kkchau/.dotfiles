@@ -43,7 +43,8 @@ local function init()
     )   -- lualine statusline
 
     -- usability
-    packer.use({ "nvim-treesitter/nvim-treesitter" })   -- treesitter
+    -- treesitter is loaded after bootstrapping in load_config.lua
+    packer.use({ "nvim-treesitter/nvim-treesitter" })
     packer.use({
         "nvim-telescope/telescope.nvim",
         cmd = { "Telescope" },
