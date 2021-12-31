@@ -33,6 +33,14 @@ local function init()
             end
         }
     )
+
+    -- LSP
+    packer.use(
+        {
+            "neovim/nvim-lspconfig",
+            config = require("plugins.lspconfig").init,
+        }
+    )
 end
 
 local plugins = setmetatable({}, {
