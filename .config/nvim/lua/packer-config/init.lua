@@ -23,7 +23,7 @@ local function init()
     packer.reset()
 
     -- plugins
-    -- theme
+    -- style
     packer.use(
         {
             "folke/tokyonight.nvim",
@@ -32,15 +32,40 @@ local function init()
                 vim.cmd([[colorscheme tokyonight]])
             end
         }
-    )
+    )   -- tokyonight theme
+    packer.use(
+        {
+            "nvim-lualine/lualine.nvim",
+            config = function()
+                require("plugins.statusline.lualine")
+            end
+        }
+    )   -- lualine statusline
 
-    -- LSP
+    -- usability
+    packer.use({ "nvim-treesitter/nvim-treesitter" })   -- treesitter
+    packer.use({
+        "nvim-telescope/telescope.nvim",
+        cmd = { "Telescope" },
+        config = require("plugins.telescope").init,
+        requires = {
+            { "nvim-lua/plenary.nvim", opt = true },
+            { "nvim-telescope/telescope-project.nvim", opt = true },
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                opt = true,
+                run = "make",
+            },
+        },
+    }) -- fuzzy finder
+
+    -- lsp
     packer.use(
         {
             "neovim/nvim-lspconfig",
             config = require("plugins.lspconfig").init,
         }
-    )
+    )   -- lspconfig
 end
 
 local plugins = setmetatable({}, {

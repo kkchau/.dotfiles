@@ -1,6 +1,5 @@
 local lspconfig = require("lspconfig")
 local lsp = require("plugins.lspconfig")
---local capabilities = require("plugins.lspconfig.capabilities").capabilities
 
 local config = {
     settings = lspconfig.pyright.settings,
