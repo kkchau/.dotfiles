@@ -3,6 +3,7 @@ local M = {}
 function M.load_options()
     -- columns
     vim.opt.cursorcolumn = true
+    vim.opt.colorcolumn = '80'
     vim.opt.number = true
     vim.opt.signcolumn = "auto"
     vim.opt.wrap = false
