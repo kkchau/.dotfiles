@@ -23,6 +23,7 @@ function M.load_options()
 
     -- search
     vim.opt.smartcase = true
+    vim.opt.hlsearch = false
 
     -- optimize
     vim.opt.lazyredraw = true
