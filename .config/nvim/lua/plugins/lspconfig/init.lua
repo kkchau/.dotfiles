@@ -22,15 +22,12 @@ function LSP.on_attach(client, bufnr)
     map(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
     map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-    end
-
 end
 
 function LSP.init()
     local servers = {
         "python",
+        "rust",
     }
     -- load lsp configs for languages
     for _, server in ipairs(servers) do
