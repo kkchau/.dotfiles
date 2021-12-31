@@ -18,7 +18,8 @@ INSTALL_DIR=$(pwd -P)
 [[ $(basename ${INSTALL_DIR}) != ".dotfiles" ]] && ERROR "Please execute script from .dotfiles directory"
 DOTFILES=(
     .environment .tmux.conf .tmux.conf.local .vimrc
-    .config/nvim/init.vim
+    .config/nvim/init.lua
+    .config/nvim/lua
     .config/alacritty/alacritty.yml
 )
 
