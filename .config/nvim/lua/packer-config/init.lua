@@ -67,6 +67,13 @@ local function init()
             config = require("plugins.lspconfig").init,
         }
     )   -- lspconfig
+    packer.use(
+        {
+            "jose-elias-alvarez/null-ls.nvim",
+            config = require("plugins.null-ls").init,
+            requires = "nvim-lua/plenary.nvim"
+        }
+    )   --null-ls for non-LSP
 end
 
 local plugins = setmetatable({}, {
