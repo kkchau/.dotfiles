@@ -98,12 +98,13 @@ if [ ${machine} == "Mac" ]; then
     # Homebrew
     BREW_INSTALL_TARGETS=(
         asdf
-        neovim
-        macvim
         cmake
-        tmux
-        grip
         coreutils
+        grip
+        macvim
+        neovim
+        ripgrep
+        tmux
     )
 
     INFO "Requesting to install the following brew targets:"
@@ -123,15 +124,6 @@ if [ ${machine} == "Mac" ]; then
     fi
 
 fi
-
-## Get Vundle
-#INFO "Installing Vundle for Vim plugins"
-#if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-#    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-#fi
-#
-## Set up Vundle plugins
-#vim -c ":PluginInstall" -c "qa!"
 
 # Source environment file
 if ! grep -Fxq "source ~/.environment" ~/.bash_profile; then
