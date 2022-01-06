@@ -43,11 +43,9 @@ local function init()
     )   -- lualine statusline
 
     -- usability
-    -- treesitter is loaded after bootstrapping in load_config.lua
     packer.use({ "nvim-treesitter/nvim-treesitter" })
     packer.use({
         "nvim-telescope/telescope.nvim",
-        cmd = { "Telescope" },
         config = require("plugins.telescope").init,
         requires = {
             { "nvim-lua/plenary.nvim", opt = true },
@@ -68,13 +66,12 @@ local function init()
             config = require("plugins.lspconfig").init,
         }
     )   -- lspconfig
-    packer.use(
-        {
-            "jose-elias-alvarez/null-ls.nvim",
-            config = require("plugins.null-ls").init,
-            requires = "nvim-lua/plenary.nvim"
-        }
-    )   --null-ls for non-LSP
+    packer.use({
+        "jose-elias-alvarez/null-ls.nvim",
+        config = require("plugins.null-ls").init,
+        requires = "nvim-lua/plenary.nvim"
+    }) --null-ls for non-LSP
+
 end
 
 local plugins = setmetatable({}, {

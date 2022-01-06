@@ -2,11 +2,11 @@ local M = {}
 M.__index = M
 
 function M.init()
-    vim.cmd([[packadd plenary.nvim]])
-    vim.cmd([[packadd telescope-fzf-native.nvim]])
-
     local telescope = require("telescope")
     local action_set = require("telescope.actions.set")
+
+    vim.cmd([[packadd plenary.nvim]])
+    vim.cmd([[packadd telescope-fzf-native.nvim]])
 
     telescope.setup(
         {
@@ -45,6 +45,10 @@ function M.init()
 
     telescope.load_extension("fzf")
 
+    -- remaps
+    local map_global = require("util").map_global
+    map_global("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
+    map_global("n", "<leader>fg", "<cmd>Telescope live_grep<CR>")
 end
 
 return M

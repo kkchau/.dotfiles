@@ -16,12 +16,13 @@ function M.init()
             },
             ensure_installed = {
                 "bash",
-                "toml",
                 "json",
-                "yaml",
                 "lua",
+                "markdown",
                 "python",
                 "rust",
+                "toml",
+                "yaml",
             },
         }
     )
