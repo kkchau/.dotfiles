@@ -50,30 +50,34 @@ __prompt_command() {
     PS1+="\u@\H : \w "
 
     # Git
-    local GIT_STATUS=$(git status 2> /dev/null)
-    local GIT_STRING=""
-    TREE_CLEAN_RE="working [a-zA-Z]* clean"
-    BRANCH_AHEAD_RE="Your branch is ahead of"
-    NOTHING_COMMIT_RE="nothing to commit"
-    # Color
-    if [[ ! $GIT_STATUS =~ $TREE_CLEAN_RE ]]; then
-        GIT_STRING+=$COLOR_RED
-    elif [[ $GIT_STATUS =~ $BRANCH_AHEAD_RE ]]; then
-        GIT_STRING+=$COLOR_YELLOW
-    elif [[ $GIT_STATUS =~ $NOTHING_COMMIT_RE ]]; then
-        GIT_STRING+=$COLOR_GREEN
+    if [[ $DISABLE_GIT_PROMPT -ne 1 ]]; then
+        local GIT_STATUS=$(git status 2> /dev/null)
+        local GIT_STRING=""
+        TREE_CLEAN_RE="working [a-zA-Z]* clean"
+        BRANCH_AHEAD_RE="Your branch is ahead of"
+        NOTHING_COMMIT_RE="nothing to commit"
+        # Color
+        if [[ ! $GIT_STATUS =~ $TREE_CLEAN_RE ]]; then
+            GIT_STRING+=$COLOR_RED
+        elif [[ $GIT_STATUS =~ $BRANCH_AHEAD_RE ]]; then
+            GIT_STRING+=$COLOR_YELLOW
+        elif [[ $GIT_STATUS =~ $NOTHING_COMMIT_RE ]]; then
+            GIT_STRING+=$COLOR_GREEN
+        else
+            GIT_STRING+=$COLOR_OCHRE
+        fi
+        # Branch/Commit
+        local ON_BRANCH="On branch ([^${IFS}]*)"
+        local ON_COMMIT="HEAD detached at ([^${IFS}]*)"
+        if [[ $GIT_STATUS =~ $ON_BRANCH ]]; then
+            GIT_STRING+="(${BASH_REMATCH[1]})"
+        elif [[ $GIT_STATUS =~ $ON_COMMIT ]]; then
+            GIT_STRING+="(${BASH_REMATCH[1]})"
+        fi
+        PS1+="$GIT_STRING$COLOR_RESET\n"
     else
-        GIT_STRING+=$COLOR_OCHRE
+        PS1+="\n"
     fi
-    # Branch/Commit
-    local ON_BRANCH="On branch ([^${IFS}]*)"
-    local ON_COMMIT="HEAD detached at ([^${IFS}]*)"
-    if [[ $GIT_STATUS =~ $ON_BRANCH ]]; then
-        GIT_STRING+="(${BASH_REMATCH[1]})"
-    elif [[ $GIT_STATUS =~ $ON_COMMIT ]]; then
-        GIT_STRING+="(${BASH_REMATCH[1]})"
-    fi
-    PS1+="$GIT_STRING$COLOR_RESET\n"
 
     [ "$EXIT" -ne 0 ] && PS1+="${COLOR_RED}!" || PS1+="${COLOR_GREEN}_"
     [ -n "$(jobs)" ] && PS1+="${COLOR_OCHRE}*" || PS1+="${COLOR_GREEN}_"
