@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 local lsp = require("plugins.lspconfig")
-local augroups = require("util").nvim_create_augroups
+local augroups_lsp_rust = require("util").nvim_create_augroups
 
 local config = {
     on_attach = function(client, bufnr)
@@ -14,7 +14,7 @@ local config = {
                     },
                 },
             }
-            augroups(autocmds)
+            augroups_lsp_rust(autocmds)
         end
         lsp.on_attach(client, bufnr)
     end,

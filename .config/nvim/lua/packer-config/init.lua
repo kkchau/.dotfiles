@@ -43,6 +43,10 @@ local function init()
     )   -- lualine statusline
 
     -- usability
+    packer.use({
+        "ojroques/vim-oscyank",
+        config = require("plugins.oscyank").init,
+    })
     packer.use({ "nvim-treesitter/nvim-treesitter" })
     packer.use({
         "nvim-telescope/telescope.nvim",
