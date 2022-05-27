@@ -2,6 +2,7 @@ local M = {}
 
 function M.load_options()
     -- columns
+    vim.opt.cursorline = true
     vim.opt.cursorcolumn = true
     vim.opt.colorcolumn = '80'
     vim.opt.number = true
