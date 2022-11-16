@@ -35,20 +35,7 @@ __prompt_command() {
     local COLOR_WHITE="\[\e[0;37m\]"
     local COLOR_RESET="\[\e[0m\]"
 
-    # Virtual Environment
-    local pre=""
-    if [ -n "${VIRTUAL_ENV}" ] && [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ]; then
-        if [ "`basename \"${VIRTUAL_ENV}\"`" = "__" ] ; then
-            # special case for Aspen magic directories
-            # see http://www.zetadev.com/software/aspen/
-            PS1+="[`basename \`dirname \"${VIRTUAL_ENV}\"\``] "
-        else
-            PS1+="(`basename \"${VIRTUAL_ENV}\"`) "
-        fi
-    fi
-
-    PS1+="\u@\H : \w "
-
+    # System statuses
     # Git
     if [[ $DISABLE_GIT_PROMPT -ne 1 ]]; then
         local GIT_STATUS=$(git status 2> /dev/null)
@@ -73,11 +60,30 @@ __prompt_command() {
             GIT_STRING+="(${BASH_REMATCH[1]})"
         elif [[ $GIT_STATUS =~ $ON_COMMIT ]]; then
             GIT_STRING+="(${BASH_REMATCH[1]})"
+        else
+            GIT_STRING=""
         fi
-        PS1+="$GIT_STRING$COLOR_RESET\n"
-    else
-        PS1+="\n"
+        [[ -z $GIT_STRING ]] || PS1+="$GIT_STRING$COLOR_RESET\n"
     fi
+    # Kubernetes
+    if [[ ( $DISABLE_K8S_PROMPT -ne 1 ) && ( ! -z $(command -v kubectl) ) ]]; then
+        local CURRENT_K8S_CONTEXT=$(kubectl config current-context)
+        [[ -z $CURRENT_K8S_CONTEXT ]] || PS1+="$COLOR_GREEN($CURRENT_K8S_CONTEXT)$COLOR_RESET\n"
+    fi
+
+    # Virtual Environment
+    local pre=""
+    if [ -n "${VIRTUAL_ENV}" ] && [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ]; then
+        if [ "`basename \"${VIRTUAL_ENV}\"`" = "__" ] ; then
+            # special case for Aspen magic directories
+            # see http://www.zetadev.com/software/aspen/
+            PS1+="[`basename \`dirname \"${VIRTUAL_ENV}\"\``] "
+        else
+            PS1+="(`basename \"${VIRTUAL_ENV}\"`) "
+        fi
+    fi
+
+    PS1+="\u@\H : \w\n"
 
     [ "$EXIT" -ne 0 ] && PS1+="${COLOR_RED}!" || PS1+="${COLOR_GREEN}_"
     [ -n "$(jobs)" ] && PS1+="${COLOR_OCHRE}*" || PS1+="${COLOR_GREEN}_"
