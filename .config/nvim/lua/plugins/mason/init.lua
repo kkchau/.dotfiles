@@ -7,18 +7,22 @@ function M.init()
 
     -- Define servers here. Table of empty tables since I'm defining the configs
     -- under the lspconfig section.
-    local servers = {
-        bashls = {},
-        pyright = {},
-        rust_analyzer = {},
-        lua_ls = {},
-    }
+    --local servers = {
+    --    bashls = {},
+    --    groovyls = {},
+    --    --lua_ls = {},
+    --    --pyright = {},
+    --    --ruff_lsp = {},
+    --    pylsp = {},
+    --    rust_analyzer = {},
+    --}
 
 
     mason.setup()
     mason_lspconfig.setup(
         {
-            ensure_installed = vim.tbl_keys(servers)
+            --ensure_installed = vim.tbl_keys(servers)
+            automatic_installation = true,
         }
     )
 end

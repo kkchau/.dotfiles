@@ -8,6 +8,16 @@ function M.init()
 
     local map_global = require("util").map_global
     map_global("i", "<C-g>", 'copilot#Accept()', true)
+
+    vim.g.copilot_filetypes = {
+        bash = true,
+        javascript = true,
+        lua = true,
+        python = true,
+        rust = true,
+        typescript = true,
+        yaml = true,
+    }
 end
 
 return M

@@ -19,9 +19,24 @@ local plugin_spec = {
             require("plugins.statusline.lualine")
         end
     },
+    { "LukeGoodsell/nextflow-vim" },
 
     -- utility
-    { "nvim-treesitter/nvim-treesitter" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = require("plugins.treesitter").init,
+        lazy = false,
+    },
+    {
+        "ggandor/leap.nvim",
+        config = require("plugins.leap").init,
+        lazy = false,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = require("plugins.treesitter").init,
+        lazy = false,
+    },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = {"nvim-treesitter"},
@@ -58,16 +73,14 @@ local plugin_spec = {
 
     -- completion
     {
-        "Exafunction/codeium.vim",
-        config = require("plugins.codeium").init,
+        "github/copilot.vim",
+        config = require("plugins.copilot").init,
     },
     { -- Autocompletion
         'hrsh7th/nvim-cmp',
         config = require("plugins.cmp").init,
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip'
         },
     },
 
@@ -84,7 +97,7 @@ local plugin_spec = {
                 "williamboman/mason-lspconfig.nvim"
             },
         }
-    }
+    },
 }
 
 local plugins = {}
