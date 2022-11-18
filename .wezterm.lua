@@ -8,4 +8,6 @@ config.font = wezterm.font_with_fallback {
 config.use_fancy_tab_bar = false
 config.color_scheme = "tokyonight"
 
+config.audible_bell = "Disabled"
+
 return config

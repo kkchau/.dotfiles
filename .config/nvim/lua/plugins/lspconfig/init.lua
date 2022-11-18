@@ -3,7 +3,6 @@ local LSP = {}
 LSP.__index = LSP
 
 function LSP.on_attach(client, bufnr)
-
     -- Enable completion by <C-X><C-O>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -19,8 +18,7 @@ function LSP.on_attach(client, bufnr)
     map(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
     map(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
     map(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
-    map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-
+    map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>')
 end
 
 function LSP.init()
@@ -30,6 +28,8 @@ function LSP.init()
         "lua",
         "python",
         "rust",
+        "sql",
+        "nextflow",
     }
     -- load lsp configs for languages
     for _, server in ipairs(servers) do

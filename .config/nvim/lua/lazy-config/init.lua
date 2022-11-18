@@ -25,23 +25,38 @@ local plugin_spec = {
             require('lsp-progress').setup()
         end
     },
+    { "LukeGoodsell/nextflow-vim" },
 
     -- utility
-    { "nvim-treesitter/nvim-treesitter" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = require("plugins.treesitter").init,
+        lazy = false,
+    },
+    {
+        "ggandor/leap.nvim",
+        config = require("plugins.leap").init,
+        lazy = false,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = require("plugins.treesitter").init,
+        lazy = false,
+    },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        dependencies = {"nvim-treesitter"},
+        dependencies = { "nvim-treesitter" },
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
-        dependencies = {"nvim-treesitter"},
+        dependencies = { "nvim-treesitter" },
     },
     {
         "nvim-telescope/telescope.nvim",
         config = require("plugins.telescope").init,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
-            { "BurntSushi/ripgrep", lazy = true },
+            { "BurntSushi/ripgrep",                    lazy = true },
             { "nvim-telescope/telescope-project.nvim", lazy = true },
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
@@ -104,21 +119,21 @@ local plugin_spec = {
                 "williamboman/mason-lspconfig.nvim"
             },
         }
-    }
+    },
 }
 
 local plugins = {}
 
 function plugins.bootstrap()
     if not vim.loop.fs_stat(lazypath) then
-      vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-      })
+        vim.fn.system({
+            "git",
+            "clone",
+            "--filter=blob:none",
+            "https://github.com/folke/lazy.nvim.git",
+            "--branch=stable", -- latest stable release
+            lazypath,
+        })
     end
     vim.opt.rtp:prepend(lazypath)
 end
