@@ -8,14 +8,15 @@ function M.init()
     -- Define servers here. Table of empty tables since I'm defining the configs
     -- under the lspconfig section.
     local servers = {
+        --lua_ls = {},
+        --ruff_lsp = {},
         bashls = {},
         gopls = {},
         groovyls = {},
-        --lua_ls = {},
-        --pyright = {},
-        --ruff_lsp = {},
         pylsp = {},
+        pyright = {},
         rust_analyzer = {},
+        sqls = {},
     }
 
 

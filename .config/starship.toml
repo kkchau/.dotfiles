@@ -1,11 +1,11 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """$git_branch$git_status$git_state$kubernetes$aws{$os}$username@$hostname:$directory
-$jobs$python$character"""
+format = """{$os}$jobs$username@$hostname:$directory$git_branch$git_status$git_state$kubernetes$aws$python
+$character"""
 
 [aws]
-format='[($profile )(\($region\) )(\[$duration\] )]($style) '
+format='\[[$symbol$profile]($style)\]'
 
 [directory]
 truncate_to_repo = false
@@ -29,14 +29,14 @@ style = "bold red"
 
 [kubernetes]
 disabled = false
-format = '[$context( \($namespace\))]($style) '
+format = '\[[$symbol$context( \($namespace\))]($style)\]'
 
 [os]
 disabled = false
 format = '[$type]($style)'
 
 [python]
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
+format = '\[[$symbol(${version})(\($virtualenv\))]($style)\]'
 
 [username]
 format = '[$user]($style)'

@@ -4,8 +4,8 @@ local lsp = require("plugins.lspconfig")
 
 local pylsp_config = {
     settings = {
-        cmd = { "pylsp", "--log-file", "/tmp/lsp.log"},
         pylsp = {
+            cmd = { "pylsp", "--verbose" },
             plugins = {
                 autopep8 = { enabled = false },
                 pycodestyle = { enabled = false },
@@ -13,19 +13,19 @@ local pylsp_config = {
                 pylint = { enabled = false },
                 yapf = { enabled = false },
                 jedi_completion = {
-                    enabled = true,
+                    enabled = false,
                     include_class_objects = true,
                     include_function_objects = true,
                     fuzzy = true,
                 },
                 jedi_definition = {
-                    enabled = true,
+                    enabled = false,
                     follow_imports = true,
                 },
                 jedi_hover = { enabled = false },
-                jedi_references = { enabled = true },
-                jedi_signature_help = { enabled = true },
-                jedi_symbols = { enabled = true },
+                jedi_references = { enabled = false },
+                jedi_signature_help = { enabled = false },
+                jedi_symbols = { enabled = false },
                 mypy = {
                     enabled = false,
                     report_progress = true,
@@ -33,6 +33,7 @@ local pylsp_config = {
                     dmypy = true,
                 },
                 ruff = {
+                    enabled = true,
                     format = { "I" },
                     lineLength = 10000,
                     preview = true,
@@ -48,11 +49,12 @@ local pylsp_config = {
         },
     },
     on_attach = function(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.hoverProvider = true
         lsp.on_attach(client, bufnr)
     end,
 }
 
-lspconfig.pyright.setup(pylsp_config)
+lspconfig.pylsp.setup(pylsp_config)
+lspconfig.pyright.setup({})
 
 return M

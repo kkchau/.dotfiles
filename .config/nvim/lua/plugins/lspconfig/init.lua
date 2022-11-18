@@ -19,7 +19,7 @@ function LSP.on_attach(client, bufnr)
     map(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
     map(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
     map(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
-    map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>')
 
 end
 
@@ -30,6 +30,7 @@ function LSP.init()
         "lua",
         "python",
         "rust",
+        "sql",
     }
     -- load lsp configs for languages
     for _, server in ipairs(servers) do
