@@ -54,8 +54,8 @@ local plugin_spec = {
 
     -- completion
     {
-        "Exafunction/codeium.vim",
-        config = require("plugins.codeium").init,
+        "github/copilot.vim",
+        config = require("plugins.copilot").init,
     },
     { -- Autocompletion
         'hrsh7th/nvim-cmp',

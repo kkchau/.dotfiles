@@ -9,6 +9,7 @@ function M.init()
         {
             pickers = {
                 find_files = {
+                    theme = "ivy",
                     hidden = true,
                     attach_mappings = function(_)
                         action_set.select:enhance({
@@ -18,6 +19,15 @@ function M.init()
                         })
                         return true
                     end,
+                },
+                live_grep = {
+                    theme = "ivy",
+                },
+                current_buffer_fuzzy_find = {
+                    theme = "ivy",
+                },
+                buffers = {
+                    theme = "ivy",
                 }
             },
             defaults = {
@@ -52,6 +62,7 @@ function M.init()
     map_global("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
     map_global("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>")
     map_global("n", "<leader>ws", "<cmd>Telescope lsp_workspace_symbols<CR>")
+    map_global("n", "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
 end
 
 return M
