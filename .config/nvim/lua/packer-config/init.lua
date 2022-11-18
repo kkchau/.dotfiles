@@ -52,7 +52,7 @@ local function init()
         "nvim-telescope/telescope.nvim",
         config = require("plugins.telescope").init,
         requires = {
-            { "nvim-lua/plenary.nvim", opt = true },
+            { "nvim-lua/plenary.nvim" },
             { "BurntSushi/ripgrep", opt = true },
             { "nvim-telescope/telescope-project.nvim", opt = true },
             {
