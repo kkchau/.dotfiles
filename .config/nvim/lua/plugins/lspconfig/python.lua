@@ -4,7 +4,6 @@ local lsp = require("plugins.lspconfig")
 
 local pylsp_config = {
     settings = {
-        cmd = { "pylsp", "--log-file", "/tmp/lsp.log"},
         pylsp = {
             plugins = {
                 autopep8 = { enabled = false },
@@ -48,11 +47,12 @@ local pylsp_config = {
         },
     },
     on_attach = function(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.hoverProvider = true
         lsp.on_attach(client, bufnr)
     end,
 }
 
-lspconfig.pyright.setup(pylsp_config)
+lspconfig.pylsp.setup(pylsp_config)
+lspconfig.pyright.setup({})
 
 return M

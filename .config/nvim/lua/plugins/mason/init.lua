@@ -12,9 +12,9 @@ function M.init()
         gopls = {},
         groovyls = {},
         --lua_ls = {},
-        --pyright = {},
-        --ruff_lsp = {},
-        pylsp = {},
+        pyright = {},
+        ruff_lsp = {},
+        --pylsp = {},
         rust_analyzer = {},
     }
 
