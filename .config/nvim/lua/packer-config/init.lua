@@ -49,6 +49,10 @@ local function init()
     })
     packer.use({ "nvim-treesitter/nvim-treesitter" })
     packer.use({
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter"
+    })
+    packer.use({
         "nvim-telescope/telescope.nvim",
         config = require("plugins.telescope").init,
         requires = {
@@ -61,15 +65,38 @@ local function init()
                 run = "make",
             },
         },
-    }) -- fuzzy finder
+    })
+
+    -- completion
+    packer.use({ "Exafunction/codeium.vim" }) -- AI-code completion
+    packer.use({ -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip'
+        },
+    })
+
+    -- git
+    packer.use({ 'tpope/vim-fugitive' })
+    packer.use({ 'lewis6991/gitsigns.nvim' })
 
     -- lsp
     packer.use(
         {
             "neovim/nvim-lspconfig",
             config = require("plugins.lspconfig").init,
+            requires = {
+                { "williamboman/mason.nvim" },
+                { "williamboman/mason-lspconfig.nvim" },
+            }
         }
     )   -- lspconfig
+    packer.use({
+        'williamboman/mason.nvim',
+        config = require("plugins.mason").init,
+    }) -- auto-config LSP servers
     packer.use({
         "jose-elias-alvarez/null-ls.nvim",
         config = require("plugins.null-ls").init,
