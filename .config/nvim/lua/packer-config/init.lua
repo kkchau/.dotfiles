@@ -1,6 +1,5 @@
 local execute = vim.api.nvim_command
 local global = require("core.global")
-local sep_os_replacer = require("util").sep_os_replacer
 local packer_compiled = global.data_path .. "packer_compiled.vim"
 local compile_to_lua = global.data_path .. "lua" .. global.path_sep .. "_compiled.lua"
 
