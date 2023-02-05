@@ -76,7 +76,24 @@ local function init()
     -- completion
     packer.use(
         {
-            "github/copilot.vim",
+            "zbirenbaum/copilot.lua",
+            cmd = "Copilot",
+            event = "InsertEnter",
+            config = function()
+                require("copilot").setup({
+                    panel = {enabled = false},
+                    suggestion = {enabled = false},
+                })
+            end,
+        }
+    )
+    packer.use(
+        {
+            "zbirenbaum/copilot-cmp",
+            after = { "copilot.lua" },
+            config = function ()
+                require("copilot_cmp").setup()
+            end
         }
     )
     -- packer.use(
