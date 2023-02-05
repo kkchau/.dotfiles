@@ -26,15 +26,17 @@ local function init()
     packer.use(
         {
             "folke/tokyonight.nvim",
+            commit = "affb21a81e6d7de073378eb86d02864c594104d9",
             config = function()
                 vim.g.tokyonight_style = "night"
                 vim.cmd([[colorscheme tokyonight]])
-            end
+            end,
         }
     )   -- tokyonight theme
     packer.use(
         {
             "nvim-lualine/lualine.nvim",
+            commit = "0050b308552e45f7128f399886c86afefc3eb988",
             config = function()
                 require("plugins.statusline.lualine")
             end
@@ -44,9 +46,14 @@ local function init()
     -- usability
     packer.use({
         "ojroques/vim-oscyank",
+        commit = "e6298736a7835bcb365dd45a8e8bfe86d935c1f8",
         config = require("plugins.oscyank").init,
     })
-    packer.use({ "nvim-treesitter/nvim-treesitter" })
+    packer.use({
+        "nvim-treesitter/nvim-treesitter",
+        config = require("plugins.treesitter").init
+
+    })
     packer.use({
         "nvim-treesitter/nvim-treesitter-textobjects",
         after = "nvim-treesitter"
@@ -89,7 +96,8 @@ local function init()
             requires = {
                 { "williamboman/mason.nvim" },
                 { "williamboman/mason-lspconfig.nvim" },
-            }
+            },
+            commit = "01185a87523b7054038dd60f0524ea3a8e1c6885",
         }
     )   -- lspconfig
     packer.use({
@@ -125,11 +133,6 @@ function plugins.bootstrap()
         )
         execute("packadd packer.nvim")
 
-        -- autocmd hook to wait for packer install and then after install load the needed config for plugins
-        vim.cmd(
-            "autocmd User PackerComplete ++once lua require('load_config').init()"
-        )
-
         -- load packer plugins
         init()
 
@@ -139,7 +142,6 @@ function plugins.bootstrap()
         -- add packer and load plugins and config
         execute("packadd packer.nvim")
         init()
-        require("load_config").init()
     end
 end
 
