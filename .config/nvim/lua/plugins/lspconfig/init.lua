@@ -5,7 +5,7 @@ LSP.__index = LSP
 function LSP.on_attach(client, bufnr)
 
     -- Enable completion by <C-X><C-O>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc") 
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     map(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
     map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -27,6 +27,7 @@ function LSP.init()
     local servers = {
         "python",
         "rust",
+        "lua",
     }
     -- load lsp configs for languages
     for _, server in ipairs(servers) do

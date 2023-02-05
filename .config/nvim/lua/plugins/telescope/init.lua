@@ -21,9 +21,10 @@ function M.init()
                         })
                         return true
                     end,
-                },
+                }
             },
             defaults = {
+                theme = "ivy",
                 file_ignore_patterns = {
                     ".git/",
                     "__pycache__",
@@ -46,9 +47,14 @@ function M.init()
     telescope.load_extension("fzf")
 
     -- remaps
+    -- do this globally since I want telescope to top-priority keymaps
     local map_global = require("util").map_global
     map_global("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
     map_global("n", "<leader>fg", "<cmd>Telescope live_grep<CR>")
+    map_global("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>")
+    map_global("n", "<leader>bb", "<cmd>Telescope buffers<CR>")
+    map_global("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>")
+    map_global("n", "<leader>ws", "<cmd>Telescope lsp_workspace_symbols<CR>")
 end
 
 return M

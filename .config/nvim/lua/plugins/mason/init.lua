@@ -5,9 +5,12 @@ function M.init()
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
 
+    -- Define servers here. Table of empty tables since I'm defining the configs
+    -- under the lspconfig section.
     local servers = {
         rust_analyzer = {},
-        pyright = {}
+        pyright = {},
+        sumneko_lua = {},
     }
 
 

@@ -137,7 +137,7 @@ function plugins.bootstrap()
         -- install packer plugins
         require("packer").sync()
     else
-        -- add packer and load plugins and conig
+        -- add packer and load plugins and config
         execute("packadd packer.nvim")
         init()
         require("load_config").init()
