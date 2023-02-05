@@ -25,9 +25,10 @@ end
 
 function LSP.init()
     local servers = {
+        "bash",
+        "lua",
         "python",
         "rust",
-        "lua",
     }
     -- load lsp configs for languages
     for _, server in ipairs(servers) do

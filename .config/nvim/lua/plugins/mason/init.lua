@@ -8,8 +8,9 @@ function M.init()
     -- Define servers here. Table of empty tables since I'm defining the configs
     -- under the lspconfig section.
     local servers = {
-        rust_analyzer = {},
+        bashls = {},
         pyright = {},
+        rust_analyzer = {},
         sumneko_lua = {},
     }
 
