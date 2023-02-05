@@ -4,7 +4,7 @@ local augroups_lsp_rust = require("util").nvim_create_augroups
 
 local config = {
     on_attach = function(client, bufnr)
-        if client.resolved_capabilities.document_formatting then
+        if client.server_capabilities.documentFormattingProvider then
             local autocmds = {
                 Format = {
                     {

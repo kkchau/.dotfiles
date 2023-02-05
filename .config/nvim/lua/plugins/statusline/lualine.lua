@@ -8,12 +8,12 @@ require('lualine').setup({
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {{'filename', path = 2}},
+    lualine_a = {'mode', 'codeium#GetStatusString()'},
+    lualine_b = {{'filename', path = 2}},
+    lualine_c = {'branch', 'diff', 'diagnostics'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_y = {},
+    lualine_z = {'progress', 'location'}
   },
   inactive_sections = {
     lualine_a = {},
