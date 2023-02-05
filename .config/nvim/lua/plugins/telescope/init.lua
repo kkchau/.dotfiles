@@ -5,9 +5,6 @@ function M.init()
     local telescope = require("telescope")
     local action_set = require("telescope.actions.set")
 
-    vim.cmd([[packadd plenary.nvim]])
-    vim.cmd([[packadd telescope-fzf-native.nvim]])
-
     telescope.setup(
         {
             pickers = {
