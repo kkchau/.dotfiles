@@ -76,10 +76,15 @@ local function init()
     -- completion
     packer.use(
         {
-            "Exafunction/codeium.vim",
-            commit = "60f2bef098299ede079638eaad645faf87737a3a",
+            "github/copilot.vim",
         }
-    ) -- AI-code completion
+    )
+    -- packer.use(
+    --     {
+    --         "Exafunction/codeium.vim",
+    --         commit = "60f2bef098299ede079638eaad645faf87737a3a",
+    --     }
+    -- ) -- AI-code completion
     packer.use({ -- Autocompletion
         'hrsh7th/nvim-cmp',
         requires = {
