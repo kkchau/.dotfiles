@@ -39,6 +39,15 @@ local plugin_spec = {
             },
         },
     },
+    {
+        "ojroques/vim-oscyank",
+        config = require("plugins.oscyank").init,
+    },
+    {
+        "ellisonleao/glow.nvim",
+        config = true,
+        cmd = "Glow"
+    },
 
     -- completion
     { -- Autocompletion
