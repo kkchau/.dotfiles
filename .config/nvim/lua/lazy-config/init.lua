@@ -49,6 +49,9 @@ local plugin_spec = {
         cmd = "Glow"
     },
 
+    -- git
+    { "tpope/vim-fugitive" },
+
     -- completion
     { -- Autocompletion
         'hrsh7th/nvim-cmp',
