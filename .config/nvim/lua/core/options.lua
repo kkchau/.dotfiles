@@ -1,6 +1,10 @@
 local M = {}
 
 function M.load_options()
+
+    -- leader
+    vim.g.mapleader = " "
+
     -- columns
     vim.opt.cursorline = true
     vim.opt.cursorcolumn = true

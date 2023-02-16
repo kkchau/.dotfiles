@@ -9,6 +9,9 @@ function M.mappings()
     remap("n", "<C-K>", "<C-W>k")
     remap("n", "<C-L>", "<C-W>l")
 
+    -- Buffers
+    remap("n", "<leader>bd", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>")
+
 end
 
 return M
