@@ -10,7 +10,7 @@ local plugin_spec = {
         priority = 1000,
         config = function()
             vim.g.tokyonight_style = "night"
-            vim.cmd([[colorscheme tokyonight]])
+            vim.cmd([[colorscheme tokyonight-night]])
         end
     },
     {
