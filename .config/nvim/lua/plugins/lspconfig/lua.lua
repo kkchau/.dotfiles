@@ -23,6 +23,6 @@ local config = {
     end,
 }
 
-lspconfig.sumneko_lua.setup(config)
+lspconfig.lua_ls.setup(config)
 
 return M

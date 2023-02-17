@@ -11,7 +11,7 @@ function M.init()
         bashls = {},
         pyright = {},
         rust_analyzer = {},
-        sumneko_lua = {},
+        lua_ls = {},
     }
 
 
