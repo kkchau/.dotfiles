@@ -17,10 +17,21 @@ CONFIRM_N="[Nn]"
 INSTALL_DIR=$(pwd -P)
 [[ $(basename ${INSTALL_DIR}) != ".dotfiles" ]] && ERROR "Please execute script from .dotfiles directory"
 DOTFILES=(
-    .environment .tmux.conf .tmux.conf.local .vimrc
+    .bashrc .zshrc .environment
+    .tmux.conf .tmux.conf.local .vimrc
+    .config/starship.toml
     .config/nvim
     .config/alacritty
 )
+
+# Bootstrap installations
+read -p "Skip bootstrapping requirements? [Y/n]: " SKIP_BOOTSTRAP
+if [[ ${GENERATE_KEY} =~ ${CONFIRM_Y} ]]; then
+    WARN "Skipping bootstrapping. Some things may not work if requirements aren't installed."
+else
+    ./bootstrap.sh
+fi
+
 
 # Make backups of current dotfiles
 MAKE_BACKUPS() {
@@ -44,12 +55,18 @@ fi
 # Symlink dotfiles
 INFO "Symlinking dotfiles..."
 for dotfile in ${DOTFILES[@]}; do
-    INFO "Linking from ${INSTALL_DIR}/${dotfile} to ${HOME}/${dotfile}"
+    src=${INSTALL_DIR}/${dotfile}
+    dest=${HOME}/${dotfile}
+    INFO "Linking from $src to $dest"
+    if [[ -L "$dest" ]]; then
+        INFO "$dest is already linked; skipping"
+        continue
+    fi
     if [[ $(dirname ${dotfile}) != '.' && ! -d ~/$(dirname ${dotfile}) ]]; then
         INFO "Making directory ~/$(dirname ${dotfile})"
         mkdir -p ~/$(dirname ${dotfile})
     fi
-    ln -s ${INSTALL_DIR}/${dotfile} ~/${dotfile}
+    ln -s "${src}" "${dest}"
 done
 
 # Generate SSH key
@@ -97,12 +114,9 @@ if [ ${machine} == "Mac" ]; then
 
     # Homebrew
     BREW_INSTALL_TARGETS=(
-        asdf
         cmake
         coreutils
         grip
-        macvim
-        neovim
         ripgrep
         tmux
     )
@@ -128,27 +142,4 @@ fi
 # Source environment file
 if ! grep -Fxq "source ~/.environment" ~/.bash_profile; then
     echo "source ~/.environment" >> ~/.bash_profile
-fi
-
-# Build Python3 Virtual Environment with pre-loaded packages
-DEFAULT_PYTHON_PACKAGES=(
-    pylint
-    black
-    isort
-)
-if [[ ! -z $(which python3) ]]; then
-    read -p "Python3 found on system at $(which python3); create default virtual environment with default packages? [Y/n]: " CREATE_VENV
-    if [[ ${CREATE_VENV} =~ ${CONFIRM_Y} ]]; then
-        read -p "Where should the venv be created? [default=~/env]: " VENV_PATH
-        [[ -z $VENV_PATH ]] && VENV_PATH="~/env"
-        python3 -m venv $VENV_PATH
-
-        INFO "Default packages will be installed"
-        source $VENV_PATH/bin/activate
-        if [[ $? -ne 0 ]]; then
-            WARN "Could not source $VENV_PATH/bin/activate; won't install packages"
-        else
-            pip install "${DEFAULT_PYTHON_PACKAGES[@]}"
-        fi
-    fi
 fi
