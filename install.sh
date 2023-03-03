@@ -138,8 +138,3 @@ if [ ${machine} == "Mac" ]; then
     fi
 
 fi
-
-# Source environment file
-if ! grep -Fxq "source ~/.environment" ~/.bash_profile; then
-    echo "source ~/.environment" >> ~/.bash_profile
-fi
