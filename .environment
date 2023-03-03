@@ -28,9 +28,17 @@ fi
 # File management
 
 alias rm="rm -i"
-alias l="ls -hlrFt"
-alias ll="ls -alhrFt"
+alias l="ls -hlrFt --color=auto"
+alias ll="ls -alhrFt --color=auto"
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # History
 
 alias hs="history | grep -E "
+
+# Environment Variables ########################################################
+
+export KUBECONFIG=~/.kube/config
