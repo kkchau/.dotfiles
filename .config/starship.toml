@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """$git_branch$git_status$git_state$kubernetes$aws{$os}$username@$hostname:$directory
-$jobs $character"""
+$jobs$python$character"""
 
 [aws]
 format='[($profile )(\($region\) )(\[$duration\] )]($style) '
@@ -23,7 +23,7 @@ style = ''
 ssh_only = false
 
 [jobs]
-format = '[$symbol$number]($style)'
+format = '[$symbol$number]($style) '
 symbol = "*"
 style = "bold red"
 
@@ -34,6 +34,9 @@ format = '[$context( \($namespace\))]($style) '
 [os]
 disabled = false
 format = '[$type]($style)'
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
 
 [username]
 format = '[$user]($style)'
