@@ -85,18 +85,8 @@ else
     INFO "Won't generate SSH key"
 fi
 
-# If using macOS, get Homebrew
-unameOut="$(uname -s)"
-case "${unameOut}" in
-    Linux*)     machine=Linux;;
-    Darwin*)    machine=Mac;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
-    *)          machine="UNKNOWN:${unameOut}"
-esac
-INFO "Currently using a ${machine} OS"
-
-if [ ${machine} == "Mac" ]; then
+# If using macOS, install packages through Homebrew
+if [ "$(uname)" == "Darwin" ]; then
 
     # Don't create .DS_Store on network drives
     defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
@@ -127,14 +117,12 @@ if [ ${machine} == "Mac" ]; then
 
     if [[ ${INSTALL_DIR} =~ ${CONFIRM_Y} ]]; then
         if ! command -v brew; then
-            INFO "Installing Homebrew"
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            WARN "Homebrew is not installed, can't continue."
+        else
+            INFO "Installing brew packages"
+            for package in ${BREW_INSTALL_TARGETS[@]}; do
+                brew install ${package}
+            done
         fi
-
-        INFO "Installing brew packages"
-        for package in ${BREW_INSTALL_TARGETS[@]}; do
-            brew install ${package}
-        done
     fi
-
 fi
