@@ -12,7 +12,7 @@ function M.init()
                 [[&&]],
                 "v:event.regname", "is", "''",
                 [[|]],
-                "execute", [['OSCYankReg "']],
+                "execute", [['OSCYankRegister "']],
                 [[|]],
                 "endif"
             }

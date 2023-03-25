@@ -53,6 +53,10 @@ local plugin_spec = {
     { "tpope/vim-fugitive" },
 
     -- completion
+    {
+        "Exafunction/codeium.vim",
+        config = require("plugins.codeium").init,
+    },
     { -- Autocompletion
         'hrsh7th/nvim-cmp',
         config = require("plugins.cmp").init,
@@ -61,27 +65,6 @@ local plugin_spec = {
             'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip'
         },
-    },
-    { -- AI-assisted completion
-        "zbirenbaum/copilot-cmp",
-        dependencies = {
-            { "nvim-cmp" },
-            {
-                "zbirenbaum/copilot.lua",
-                event = "InsertEnter",
-                config = function()
-                    require("copilot").setup({
-                        suggestion = { enabled = false },
-                        panel = { enabled = false },
-                    })
-                end
-            }
-        },
-        config = function ()
-          require("copilot_cmp").setup({
-              method = "getCompletionsCycling",
-          })
-        end
     },
 
     -- lsp

@@ -43,6 +43,7 @@ function M.init()
         },
         sources = {
             { name = "copilot" },
+            { name = "codeium" },
             { name = "nvim_lsp" },
             { name = "luasnip" },
         },
