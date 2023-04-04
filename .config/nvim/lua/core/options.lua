@@ -26,6 +26,7 @@ function M.load_options()
     -- usage
     vim.opt.wildmenu = true
     vim.opt.clipboard = "unnamedplus"
+    vim.opt.mouse = ""
 
     -- search
     vim.opt.smartcase = true
