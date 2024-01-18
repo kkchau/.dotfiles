@@ -27,6 +27,10 @@ local plugin_spec = {
         dependencies = {"nvim-treesitter"},
     },
     {
+        "nvim-treesitter/nvim-treesitter-context",
+        dependencies = {"nvim-treesitter"},
+    },
+    {
         "nvim-telescope/telescope.nvim",
         config = require("plugins.telescope").init,
         dependencies = {
