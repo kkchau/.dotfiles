@@ -19,6 +19,12 @@ local plugin_spec = {
             require("plugins.statusline.lualine")
         end
     },
+    {
+        'linrongbin16/lsp-progress.nvim',
+        config = function()
+            require('lsp-progress').setup()
+        end
+    },
 
     -- utility
     { "nvim-treesitter/nvim-treesitter" },
@@ -52,14 +58,30 @@ local plugin_spec = {
         config = true,
         cmd = "Glow"
     },
+    {
+        "toppair/peek.nvim",
+        event = { "VeryLazy" },
+        build = "deno task --quiet build:fast",
+        config = function()
+            require("peek").setup()
+            vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+            vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+        end,
+    },
 
     -- git
     { "tpope/vim-fugitive" },
 
-    -- completion
+    -- AI
     {
         "github/copilot.vim",
         config = require("plugins.copilot").init,
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        dependencies = {
+            "github/copilot.vim",
+        },
     },
     { -- Autocompletion
         'hrsh7th/nvim-cmp',

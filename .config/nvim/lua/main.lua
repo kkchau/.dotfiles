@@ -15,9 +15,9 @@ require("core.mappings").mappings()
 -- other autocmds
 local main_augroups = require("util").nvim_create_augroups
 local main_autocmds = {
-    PantsOnSave = {
+    FormatOnSave = {
         {
-            "BufWritePost */color/**/*.py !./pants fmt fix lint check <afile>"
+            "BufWritePre *.py lua vim.lsp.buf.format()"
         }
     }
 }
