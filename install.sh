@@ -22,6 +22,7 @@ DOTFILES=(
     .config/starship.toml
     .config/nvim
     .config/alacritty
+    .wezterm.lua
 )
 
 # Bootstrap installations
