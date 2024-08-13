@@ -12,6 +12,17 @@ require("core.global")
 require("core.options").load_options()
 require("core.mappings").mappings()
 
+-- other autocmds
+local main_augroups = require("util").nvim_create_augroups
+local main_autocmds = {
+    FormatOnSave = {
+        {
+            "BufWritePre *.py lua vim.lsp.buf.format()"
+        }
+    }
+}
+main_augroups(main_autocmds)
+
 -- plugins
 local lazy = require("lazy-config")
 lazy.bootstrap()

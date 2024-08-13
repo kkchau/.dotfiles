@@ -9,16 +9,21 @@ function M.init()
     -- under the lspconfig section.
     local servers = {
         bashls = {},
-        pyright = {},
+        gopls = {},
+        groovyls = {},
+        --lua_ls = {},
+        --pyright = {},
+        --ruff_lsp = {},
+        pylsp = {},
         rust_analyzer = {},
-        lua_ls = {},
     }
 
 
     mason.setup()
     mason_lspconfig.setup(
         {
-            ensure_installed = vim.tbl_keys(servers)
+            ensure_installed = vim.tbl_keys(servers),
+            automatic_installation = true,
         }
     )
 end
