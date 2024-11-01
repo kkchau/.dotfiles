@@ -26,6 +26,7 @@ end
 function LSP.init()
     local servers = {
         "bash",
+        "go",
         "lua",
         "python",
         "rust",

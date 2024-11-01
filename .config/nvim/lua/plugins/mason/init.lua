@@ -9,9 +9,10 @@ function M.init()
     -- under the lspconfig section.
     local servers = {
         bashls = {},
+        gopls = {},
+        lua_ls = {},
         pyright = {},
         rust_analyzer = {},
-        lua_ls = {},
     }
 
 

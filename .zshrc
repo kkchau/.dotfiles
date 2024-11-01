@@ -10,6 +10,7 @@ autoload -U compinit; compinit
 
 # Shared environment
 . "$HOME/.environment"
+. "$HOME/.local_environment"
 
 # Prompt
 eval "$(starship init zsh)"
