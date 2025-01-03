@@ -106,6 +106,7 @@ if [ "$(uname)" == "Darwin" ]; then
     BREW_INSTALL_TARGETS=(
         cmake
         coreutils
+        fzf
         grip
         ripgrep
         tmux
