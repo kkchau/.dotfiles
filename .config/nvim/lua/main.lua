@@ -4,6 +4,9 @@ local disabled_built_ins = {
     "zipPlugin"
 }
 
+-- In order to get the editor to recognize mise tools, prepend mise shims to PATH
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end

@@ -93,10 +93,12 @@ local plugin_spec = {
         config = require("plugins.copilot").init,
     },
     {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        dependencies = {
-            "github/copilot.vim",
-        },
+      "olimorris/codecompanion.nvim",
+      opts = {},
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+      },
     },
     { -- Autocompletion
         'hrsh7th/nvim-cmp',
