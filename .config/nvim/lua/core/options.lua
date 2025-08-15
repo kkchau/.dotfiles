@@ -1,7 +1,6 @@
 local M = {}
 
 function M.load_options()
-
     -- leader
     vim.g.mapleader = " "
 
@@ -40,13 +39,24 @@ function M.load_options()
     vim.opt.path = "**/*"
     vim.opt.wildignore:append(
         {
-	    ".git/",
-	    "build",
-	    "coverage",
-	    "dist",
+            ".git/",
+            "build",
+            "coverage",
+            "dist",
         }
     )
 
+    -- diagnostics
+    vim.diagnostic.config(
+        {
+            virtual_text = {
+                source = true,
+            },
+            float = {
+                source = true
+            }
+        }
+    )
 end
 
 return M
