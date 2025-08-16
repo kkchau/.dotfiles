@@ -1,5 +1,5 @@
+local map = require("util").map_global
 local M = {}
-M.__index = M
 
 function M.init()
     local codecompanion = require("codecompanion")
@@ -21,6 +21,8 @@ function M.init()
         }
         ]]
     })
+
+    map('n', '<leader>cc', '<cmd>CodeCompanionChat Toggle<CR>')
 end
 
 return M
