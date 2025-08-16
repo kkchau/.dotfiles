@@ -94,7 +94,7 @@ local plugin_spec = {
     },
     {
       "olimorris/codecompanion.nvim",
-      opts = {},
+      config = require("plugins.codecompanion").init,
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
