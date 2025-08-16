@@ -4,6 +4,7 @@ M.__index = M
 function M.init()
     local codecompanion = require("codecompanion")
     codecompanion.setup({
+        --[[
         strategies = {
             chat = {
                 adapter = {
@@ -18,6 +19,7 @@ function M.init()
                 adapter = "copilot",
             },
         }
+        ]]
     })
 end
 
