@@ -84,6 +84,15 @@ local plugin_spec = {
         end,
     },
 
+    -- tools
+    {
+        "obsidian-nvim/obsidian.nvim",
+        version = "*",
+        lazy = true,
+        ft = "markdown",
+        config = require("plugins.obsidian").init,
+    },
+
     -- git
     { "tpope/vim-fugitive" },
 
