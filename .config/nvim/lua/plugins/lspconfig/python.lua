@@ -1,6 +1,5 @@
 local M = {}
 local lspconfig = require("lspconfig")
-local lsp = require("plugins.lspconfig")
 local configs = require("lspconfig.configs")
 
 local pylsp_config = {
@@ -52,7 +51,6 @@ local pylsp_config = {
     },
     on_attach = function(client, bufnr)
         client.server_capabilities.hoverProvider = true
-        lsp.on_attach(client, bufnr)
     end,
 }
 
@@ -73,7 +71,6 @@ local ruff_config = {
                 vim.lsp.buf.format()
             end,
         })
-        lsp.on_attach(client, bufnr)
     end,
 }
 
@@ -90,7 +87,6 @@ local pyright_config = {
     },
     on_attach = function(client, bufnr)
         client.server_capabilities.hoverProvider = false
-        lsp.on_attach(client, bufnr)
     end,
 }
 
@@ -111,7 +107,6 @@ if not configs.ty then
             },
             on_attach = function(client, bufnr)
                 client.server_capabilities.definitionProvider = false
-                lsp.on_attach(client, bufnr)
             end,
 
         }

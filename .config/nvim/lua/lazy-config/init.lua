@@ -5,14 +5,22 @@ local plugin_spec = {
 
     -- appearance
     {
-        "folke/tokyonight.nvim",
+        "nyoom-engineering/oxocarbon.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            vim.g.tokyonight_style = "night"
-            vim.cmd([[colorscheme tokyonight-night]])
+            vim.cmd([[colorscheme oxocarbon]])
         end
     },
+    --{
+    --    "folke/tokyonight.nvim",
+    --    lazy = false,
+    --    priority = 1000,
+    --    config = function()
+    --        vim.g.tokyonight_style = "night"
+    --        vim.cmd([[colorscheme tokyonight-night]])
+    --    end
+    --},
     {
         "nvim-lualine/lualine.nvim",
         config = function()
@@ -104,12 +112,12 @@ local plugin_spec = {
         config = require("plugins.copilot").init,
     },
     {
-      "olimorris/codecompanion.nvim",
-      config = require("plugins.codecompanion").init,
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
-      },
+        "olimorris/codecompanion.nvim",
+        config = require("plugins.codecompanion").init,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
     },
     { -- Autocompletion
         'hrsh7th/nvim-cmp',

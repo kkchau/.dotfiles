@@ -4,8 +4,9 @@ local disabled_built_ins = {
     "zipPlugin"
 }
 
--- In order to get the editor to recognize mise tools, prepend mise shims to PATH
-vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+-- In order to get the editor to recognize mise tools, prepend mise shims to PATH.
+-- Note: this is only necessary if we're not using the same environment as where neovim was executed.
+-- vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
@@ -45,7 +46,8 @@ vim.api.nvim_create_user_command(
     'ClrOpenInGH',
     function()
         local sha = util.git.get_git_sha():gsub('^%s+', ''):gsub('%s+$', ''):gsub('[\n\r]+', ' ')
-        local top_level_path = util.git.show_top_level():gsub('^%s+', ''):gsub('%s+$', ''):gsub('[\n\r]+', ' '):gsub("([%%%^%$%(%)%.%[%]%*%+%-%?])", "%%%1")
+        local top_level_path = util.git.show_top_level():gsub('^%s+', ''):gsub('%s+$', ''):gsub('[\n\r]+', ' '):gsub(
+            "([%%%^%$%(%)%.%[%]%*%+%-%?])", "%%%1")
         local file_rel_path = vim.api.nvim_buf_get_name(0):gsub("^" .. top_level_path .. "/", "")
         local url = "https://github.com/color/color/tree/" .. sha .. "/" .. file_rel_path
         print(url)
@@ -58,7 +60,8 @@ vim.api.nvim_create_user_command(
     'ClrOpenLineInGH',
     function()
         local sha = util.git.get_git_sha():gsub('^%s+', ''):gsub('%s+$', ''):gsub('[\n\r]+', ' ')
-        local top_level_path = util.git.show_top_level():gsub('^%s+', ''):gsub('%s+$', ''):gsub('[\n\r]+', ' '):gsub("([%%%^%$%(%)%.%[%]%*%+%-%?])", "%%%1")
+        local top_level_path = util.git.show_top_level():gsub('^%s+', ''):gsub('%s+$', ''):gsub('[\n\r]+', ' '):gsub(
+            "([%%%^%$%(%)%.%[%]%*%+%-%?])", "%%%1")
         local file_rel_path = vim.api.nvim_buf_get_name(0):gsub("^" .. top_level_path .. "/", "")
         local line_num = vim.fn.line('.')
         local url = "https://github.com/color/color/tree/" .. sha .. "/" .. file_rel_path .. "#L" .. line_num
