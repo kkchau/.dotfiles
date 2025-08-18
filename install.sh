@@ -1,21 +1,10 @@
 #!/usr/bin/env bash
 
-INFO() {
-    echo 2>&1 "INFO: $@"
-}
-WARN() {
-    echo 2>&1 "WARN: $@"
-}
-ERROR() {
-    echo 2>&1 "ERROR: $@" && exit 1
-}
-
-CONFIRM_Y="[Yy]"
-CONFIRM_N="[Nn]"
-
 # This script must be executed from within the .dotfiles directory
 INSTALL_DIR=$(pwd -P)
-[[ $(basename ${INSTALL_DIR}) != ".dotfiles" ]] && ERROR "Please execute script from .dotfiles directory"
+[ $(basename ${INSTALL_DIR}) != ".dotfiles" ] && echo 2>&1 "util.sh not found! Please run this script from the .dotfiles directory." && exit 1
+source ./util.sh
+
 DOTFILES=(
     .bashrc .zshrc .environment
     .tmux.conf .tmux.conf.local .vimrc
@@ -27,10 +16,10 @@ DOTFILES=(
 
 # Bootstrap installations
 read -p "Skip bootstrapping requirements? [Y/n]: " SKIP_BOOTSTRAP
-if [[ ${GENERATE_KEY} =~ ${CONFIRM_Y} ]]; then
+if [[ ${SKIP_BOOTSTRAP} =~ ${CONFIRM_Y} ]]; then
     WARN "Skipping bootstrapping. Some things may not work if requirements aren't installed."
 else
-    ./bootstrap.sh
+   ./bootstrap.sh
 fi
 
 
@@ -103,28 +92,4 @@ if [ "$(uname)" == "Darwin" ]; then
         ssh-add -K ~/.ssh/id_rsa
     fi
 
-    # Homebrew
-    BREW_INSTALL_TARGETS=(
-        cmake
-        coreutils
-        fzf
-        grip
-        ripgrep
-        tmux
-    )
-
-    INFO "Requesting to install the following brew targets:"
-    INFO "${BREW_INSTALL_TARGETS[@]}"
-    read -p "Install homebrew and brew packages? [Y/n]: " INSTALL_BREW
-
-    if [[ ${INSTALL_DIR} =~ ${CONFIRM_Y} ]]; then
-        if ! command -v brew; then
-            WARN "Homebrew is not installed, can't continue."
-        else
-            INFO "Installing brew packages"
-            for package in ${BREW_INSTALL_TARGETS[@]}; do
-                brew install ${package}
-            done
-        fi
-    fi
 fi
