@@ -23,16 +23,12 @@ function LSP.init()
             map(event.buf, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>')
 
             if client.server_capabilities.documentFormattingProvider then
-                print("LSP: Formatting enabled for " .. client.name)
-                local autocmds = {
-                    Format = {
-                        {
-                            "BufWritePre",
-                            "<buffer>",
-                            "lua vim.lsp.buf.format()",
-                        },
-                    },
-                }
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = event.buf,
+                    callback = function()
+                        vim.lsp.buf.format({ async = false })
+                    end
+                })
             end
         end
     })

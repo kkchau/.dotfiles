@@ -96,6 +96,7 @@ local plugin_spec = {
 
     -- git
     { "tpope/vim-fugitive" },
+    { "sindrets/diffview.nvim" },
 
     -- AI
     {
