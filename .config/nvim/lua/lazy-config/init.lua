@@ -34,11 +34,6 @@ local plugin_spec = {
         lazy = false,
     },
     {
-        "ggandor/leap.nvim",
-        config = require("plugins.leap").init,
-        lazy = false,
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         config = require("plugins.treesitter").init,
         lazy = false,
@@ -65,23 +60,14 @@ local plugin_spec = {
         },
     },
     {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        config = require("plugins.snacks").init,
+    },
+    {
         "ojroques/vim-oscyank",
         config = require("plugins.oscyank").init,
-    },
-    {
-        "ellisonleao/glow.nvim",
-        config = true,
-        cmd = "Glow"
-    },
-    {
-        "toppair/peek.nvim",
-        event = { "VeryLazy" },
-        build = "deno task --quiet build:fast",
-        config = function()
-            require("peek").setup()
-            vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-            vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-        end,
     },
 
     -- tools
@@ -91,6 +77,21 @@ local plugin_spec = {
         lazy = true,
         ft = "markdown",
         config = require("plugins.obsidian").init,
+    },
+    { -- Quick markdown preview
+        "ellisonleao/glow.nvim",
+        config = true,
+        cmd = "Glow"
+    },
+    { -- Fully render markdown preview
+        "toppair/peek.nvim",
+        event = { "VeryLazy" },
+        build = "deno task --quiet build:fast",
+        config = function()
+            require("peek").setup()
+            vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+            vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+        end,
     },
 
     -- git
