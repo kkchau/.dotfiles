@@ -18,6 +18,7 @@ function M.init()
             time_format = "%H:%M",
         },
         legacy_commands = false,
+        opts = {}
     })
 
     -- Keymaps specific for markdown files when Obsidian is loaded

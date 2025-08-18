@@ -37,10 +37,11 @@ function LSP.init()
         "bash",
         "go",
         "lua",
+        "nextflow",
         "python",
         "rust",
         "sql",
-        "nextflow",
+        "terraform",
     }
     -- load lsp configs for languages
     for _, server in ipairs(servers) do

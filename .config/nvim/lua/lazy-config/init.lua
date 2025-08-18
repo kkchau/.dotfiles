@@ -5,22 +5,14 @@ local plugin_spec = {
 
     -- appearance
     {
-        "nyoom-engineering/oxocarbon.nvim",
+        "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd([[colorscheme oxocarbon]])
+            vim.g.tokyonight_style = "night"
+            vim.cmd([[colorscheme tokyonight-night]])
         end
     },
-    --{
-    --    "folke/tokyonight.nvim",
-    --    lazy = false,
-    --    priority = 1000,
-    --    config = function()
-    --        vim.g.tokyonight_style = "night"
-    --        vim.cmd([[colorscheme tokyonight-night]])
-    --    end
-    --},
     {
         "nvim-lualine/lualine.nvim",
         config = function()

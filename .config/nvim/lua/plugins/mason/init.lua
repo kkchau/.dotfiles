@@ -9,7 +9,6 @@ function M.init()
     -- under the lspconfig section.
     local servers = {
         --lua_ls = {},
-        --ruff_lsp = {},
         bashls = {},
         gopls = {},
         groovyls = {},
@@ -18,8 +17,8 @@ function M.init()
         ruff = {},
         rust_analyzer = {},
         sqls = {},
+        terraformls = {},
     }
-
 
     mason.setup()
     mason_lspconfig.setup(
