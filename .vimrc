@@ -2,42 +2,6 @@ set nocompatible
 set encoding=utf-8
 
 
-"----Vundle-------------------------------------------------------------------"
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'dense-analysis/ale'
-Plugin 'preservim/tagbar'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'raimondi/delimitmate'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kaicataldo/material.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-
 "----Commands-----------------------------------------------------------------"
 " Better command-line completion
 set wildmenu
@@ -77,14 +41,8 @@ map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
 
-" NERDTree
-map <C-n> :NERDTreeToggle<CR>
-
 " Terminal escape
 tnoremap <Esc> <C-\><C-n>
-
-" Vim-markdown
-let vim_markdown_preview_github=1
 
 "----Style--------------------------------------------------------------------"
 " Visual bell instead of audible bell
@@ -103,7 +61,7 @@ autocmd InsertLeave * :set relativenumber
 " Color scheme
 set termguicolors
 set background=dark
-colorscheme material
+colorscheme elflord
 let g:material_theme_style = 'darker'
 let g:material_terminal_italics = 0
 let g:airline_powerline_fonts=0
@@ -121,19 +79,6 @@ set nowrap
 
 " Persistent ruler
 set ruler
-
-" Auto NERDTree
-"autocmd vimenter * NERDTree
-
-" ALE
-let g:ale_linters = {
-            \ 'python': ['pylint'],
-            \}
-let g:ale_fixers = {
-            \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \ 'python': ['black', 'isort'],
-            \}
-let g:ale_fix_on_save = 1
 
 "----Syntax-------------------------------------------------------------------"
 syntax enable
