@@ -27,18 +27,6 @@ function M.map_global(type, key, value, expr)
     )
 end
 
-function M.nvim_create_augroups(tbl)
-    for group_name, definition in pairs(tbl) do
-        vim.api.nvim_command("augroup " .. group_name)
-        vim.api.nvim_command("autocmd!")
-        for _, def in ipairs(definition) do
-            local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
-            vim.api.nvim_command(command)
-        end
-        vim.api.nvim_command("augroup END")
-    end
-end
-
 function M.open_default_float()
     local gheight = vim.api.nvim_list_uis()[1].height
     local gwidth = vim.api.nvim_list_uis()[1].width

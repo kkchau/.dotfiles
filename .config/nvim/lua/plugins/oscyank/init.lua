@@ -1,24 +1,19 @@
 local M = {}
-M.__index = M
 
 function M.init()
     vim.g.oscyank_term = 'tmux'
-    local augroups = require("util").nvim_create_augroups
-    local autocmds = {
-        Yank = {
-            {
-                "TextYankPost", [[*]],
-                "if", "v:event.operator", "is", "'y'",
-                [[&&]],
-                "v:event.regname", "is", "''",
-                [[|]],
-                "execute", [['OSCYankRegister "']],
-                [[|]],
-                "endif"
-            }
+    vim.api.nvim_create_autocmd(
+        "TextYankPost",
+        {
+            group = vim.api.nvim_create_augroup('Yank', {}),
+            pattern = "*",
+            callback = function(event)
+                if event.operator == 'y' and event.regname == '' then
+                    vim.cmd('OSCYankRegister ""')
+                end
+            end
         }
-    }
-    augroups(autocmds)
+    )
 end
 
 return M

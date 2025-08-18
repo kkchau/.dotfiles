@@ -1,27 +1,42 @@
 local map = require("util").map
 local LSP = {}
-LSP.__index = LSP
-
-function LSP.on_attach(client, bufnr)
-    -- Enable completion by <C-X><C-O>
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    map(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-    map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-    map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    map(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-    map(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    map(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    map(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    map(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    map(bufnr, 'n', '<C-e>', '<cmd>lua vim.diagnostic.open_float()<CR>')
-    map(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-    map(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-    map(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
-    map(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>')
-end
 
 function LSP.init()
+    vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(event)
+            local client = vim.lsp.get_client_by_id(event.data.client_id)
+            -- Enable completion by <C-X><C-O>
+            vim.bo[event.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+            map(event.buf, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+            map(event.buf, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+            map(event.buf, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+            map(event.buf, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+            map(event.buf, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+            map(event.buf, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+            map(event.buf, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+            map(event.buf, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+            map(event.buf, 'n', '<C-e>', '<cmd>lua vim.diagnostic.open_float()<CR>')
+            map(event.buf, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+            map(event.buf, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+            map(event.buf, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>')
+            map(event.buf, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>')
+
+            if client.server_capabilities.documentFormattingProvider then
+                print("LSP: Formatting enabled for " .. client.name)
+                local autocmds = {
+                    Format = {
+                        {
+                            "BufWritePre",
+                            "<buffer>",
+                            "lua vim.lsp.buf.format()",
+                        },
+                    },
+                }
+            end
+        end
+    })
+
     local servers = {
         "bash",
         "go",

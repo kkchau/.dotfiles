@@ -16,11 +16,6 @@ require("core.options").load_options()
 require("core.mappings").mappings()
 local util = require("util")
 
--- other autocmds
-local main_augroups = require("util").nvim_create_augroups
-local main_autocmds = {}
-main_augroups(main_autocmds)
-
 -- user commands
 vim.api.nvim_create_user_command(
     'Pytest',
