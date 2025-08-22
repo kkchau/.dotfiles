@@ -8,16 +8,18 @@ function M.init()
     -- Define servers here. Table of empty tables since I'm defining the configs
     -- under the lspconfig section.
     local servers = {
-        --lua_ls = {},
         bashls = {},
         gopls = {},
         groovyls = {},
+        html = {},
+        lua_ls = {},
         pylsp = {},
         pyright = {},
         ruff = {},
         rust_analyzer = {},
         sqls = {},
         terraformls = {},
+        ts_ls = {},
     }
 
     mason.setup()

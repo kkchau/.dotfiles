@@ -1,8 +1,4 @@
 local M = {}
 local lspconfig = require("lspconfig")
-local lsp = require('plugins.lspconfig')
-local config = {
-    on_attach = lsp.on_attach,
-}
-lspconfig.bashls.setup(config)
+lspconfig.bashls.setup({})
 return M

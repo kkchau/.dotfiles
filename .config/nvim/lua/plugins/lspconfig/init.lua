@@ -36,6 +36,7 @@ function LSP.init()
     local servers = {
         "bash",
         "go",
+        "html",
         "lua",
         "nextflow",
         "python",
