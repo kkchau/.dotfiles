@@ -43,6 +43,7 @@ function LSP.init()
         "rust",
         "sql",
         "terraform",
+        "typescript",
     }
     -- load lsp configs for languages
     for _, server in ipairs(servers) do
