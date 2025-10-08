@@ -1,4 +1,1 @@
-local M = {}
-local lspconfig = require("lspconfig")
-lspconfig.bashls.setup({})
-return M
+vim.lsp.enable('bashls')

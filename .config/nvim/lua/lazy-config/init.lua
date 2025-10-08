@@ -106,6 +106,10 @@ local plugin_spec = {
         config = require("plugins.copilot").init,
     },
     {
+        "folke/sidekick.nvim",
+        config = require("plugins.sidekick").init,
+    },
+    {
         "olimorris/codecompanion.nvim",
         config = require("plugins.codecompanion").init,
         dependencies = {

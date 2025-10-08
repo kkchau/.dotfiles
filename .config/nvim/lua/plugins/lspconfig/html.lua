@@ -1,2 +1,1 @@
-local lspconfig = require("lspconfig")
-lspconfig.html.setup({})
+vim.lsp.enable('html')

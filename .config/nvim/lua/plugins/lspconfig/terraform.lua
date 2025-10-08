@@ -1,2 +1,1 @@
-local lspconfig = require("lspconfig")
-lspconfig.terraformls.setup({})
+vim.lsp.enable('terraformls')
