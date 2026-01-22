@@ -1,5 +1,4 @@
 local M = {}
-local lspconfig = require("lspconfig")
 
 local config = {
     settings = {
@@ -19,6 +18,6 @@ local config = {
     flags = { debounce_text_changes = 500 },
 }
 
-lspconfig.lua_ls.setup(config)
+vim.lsp.config('lua_ls', config)
 
 return M
