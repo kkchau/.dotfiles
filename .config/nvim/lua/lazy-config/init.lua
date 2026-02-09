@@ -106,8 +106,11 @@ local plugin_spec = {
         config = require("plugins.copilot").init,
     },
     {
-        "folke/sidekick.nvim",
-        config = require("plugins.sidekick").init,
+        "nickjvandyke/opencode.nvim",
+        config = require("plugins.opencode").init,
+        dependencies = {
+            "folke/snacks.nvim",
+        }
     },
     {
         "olimorris/codecompanion.nvim",

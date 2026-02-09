@@ -4,12 +4,10 @@ local M = {}
 function M.init()
     local codecompanion = require("codecompanion")
     codecompanion.setup({
-        --[[
-        strategies = {
+        interactions = {
             chat = {
                 adapter = {
-                    name = "ollama",
-                    model = "qwen3:8b",
+                    name = "cursor",
                 },
             },
             cmd = {
@@ -19,7 +17,6 @@ function M.init()
                 adapter = "copilot",
             },
         }
-        ]]
     })
 
     map('n', '<leader>cc', '<cmd>CodeCompanionChat Toggle<CR>')
