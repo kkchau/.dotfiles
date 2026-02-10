@@ -35,6 +35,7 @@ function LSP.init()
 
     local servers = {
         "bash",
+        "copilot",
         "go",
         "html",
         "lua",

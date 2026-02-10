@@ -71,13 +71,6 @@ local plugin_spec = {
     },
 
     -- tools
-    {
-        "obsidian-nvim/obsidian.nvim",
-        version = "*",
-        lazy = true,
-        ft = "markdown",
-        config = require("plugins.obsidian").init,
-    },
     { -- Quick markdown preview
         "ellisonleao/glow.nvim",
         config = true,
@@ -113,11 +106,10 @@ local plugin_spec = {
         }
     },
     {
-        "olimorris/codecompanion.nvim",
-        config = require("plugins.codecompanion").init,
+        "folke/sidekick.nvim",
+        config = require("plugins.sidekick").init,
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
+            "folke/snacks.nvim",
         },
     },
     { -- Autocompletion

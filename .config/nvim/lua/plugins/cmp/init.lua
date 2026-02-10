@@ -20,9 +20,15 @@ function M.init()
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
-                    else
-                        fallback()
+                        return
                     end
+
+                    local has_sidekick, sidekick = pcall(require, "sidekick")
+                    if has_sidekick and sidekick.nes_jump_or_apply() then
+                        return
+                    end
+
+                    fallback()
                 end, { 'i', 's' }),
                 ['<S-Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
