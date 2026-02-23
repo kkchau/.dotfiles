@@ -1,3 +1,5 @@
+local util = require('core.util')
+
 vim.api.nvim_create_user_command(
     'Pytest',
     function()

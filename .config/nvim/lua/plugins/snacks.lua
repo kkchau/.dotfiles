@@ -14,3 +14,27 @@ vim.api.nvim_set_keymap(
 
     }
 )
+vim.api.nvim_set_keymap(
+    "n", "<leader>ff", "",
+    {
+        noremap = true,
+        silent = true,
+        expr = false,
+        callback = function()
+            Snacks.picker.smart()
+        end,
+
+    }
+)
+vim.api.nvim_set_keymap(
+    "n", "<leader>fg", "",
+    {
+        noremap = true,
+        silent = true,
+        expr = false,
+        callback = function()
+            Snacks.picker.grep()
+        end,
+
+    }
+)

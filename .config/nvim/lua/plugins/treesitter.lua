@@ -1,6 +1,8 @@
 -- Treesitter
 vim.pack.add({
-    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' }
+    'https://github.com/nvim-treesitter/nvim-treesitter',
+    'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+    'https://github.com/nvim-treesitter/nvim-treesitter-context'
 })
 local treesitter = require('nvim-treesitter')
 treesitter.install({

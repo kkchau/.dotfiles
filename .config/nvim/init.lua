@@ -21,7 +21,7 @@ local language_servers = {
     'groovyls',
     'html',
     'lua_ls',
-    'pyright',
+    --'pyright',
     'ruff',
     'rust_analyzer',
     'sqls',

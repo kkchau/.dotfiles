@@ -2,6 +2,7 @@ return {
     cmd = { "lua-language-server" },
     settings = {
         Lua = {
+            hint = false,
             runtime = {
                 version = "LuaJIT",
             }
@@ -9,4 +10,3 @@ return {
     },
     filetypes = { "lua" },
 }
---vim.lsp.enable('lua_ls')
