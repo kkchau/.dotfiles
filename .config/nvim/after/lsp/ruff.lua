@@ -12,13 +12,18 @@ return {
         client.server_capabilities.hoverProvider = false
         vim.api.nvim_create_autocmd("BufWritePre", {
             callback = function()
-                vim.lsp.buf.code_action({
-                    context = {
-                        only = { "source.fixAll" },
-                    },
-                    apply = true,
-                })
-                vim.lsp.buf.format({ async = false })
+                vim.wait(
+                    100,
+                    function()
+                        vim.lsp.buf.code_action({
+                            context = {
+                                only = { "source.fixAll" },
+                            },
+                            apply = true,
+                        })
+                        vim.lsp.buf.format({ async = false })
+                    end
+                )
             end,
         })
     end,
