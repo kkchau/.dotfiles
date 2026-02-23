@@ -1,27 +1,21 @@
-local util = require("util")
-local M = {}
+-- Global key maps
 
-function M.mappings()
-    -- Split navigation
-    util.map_global("n", "<C-H>", "<C-W>h")
-    util.map_global("n", "<C-J>", "<C-W>j")
-    util.map_global("n", "<C-K>", "<C-W>k")
-    util.map_global("n", "<C-L>", "<C-W>l")
+-- Split navigation
+local default_keymap_opts = { noremap = true, silent = true, expr = false }
+vim.api.nvim_set_keymap("n", "<C-H>", "<C-W>h", default_keymap_opts)
+vim.api.nvim_set_keymap("n", "<C-J>", "<C-W>j", default_keymap_opts)
+vim.api.nvim_set_keymap("n", "<C-K>", "<C-W>k", default_keymap_opts)
+vim.api.nvim_set_keymap("n", "<C-L>", "<C-W>l", default_keymap_opts)
 
-    -- Buffers
-    util.map_global("n", "<leader>bd", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>")
+-- Buffer management
+vim.api.nvim_set_keymap("n", "<leader>bd", "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", default_keymap_opts)
 
-    -- Symbols
-    -- Builtin: <leader>ds vim.lsp.buf.document_symbol in float
-
-    -- Copy filepath to clipboard
-    vim.api.nvim_set_keymap("n", "<leader>yp", "",
-        {
-            callback = function()
-                vim.fn.setreg('+', vim.fn.expand('%'))
-            end
-        }
-    )
-end
-
-return M
+-- Utilities
+-- Copy filepath to clipboard
+vim.api.nvim_set_keymap("n", "<leader>yp", "",
+    {
+        callback = function()
+            vim.fn.setreg('+', vim.fn.expand('%'))
+        end
+    }
+)

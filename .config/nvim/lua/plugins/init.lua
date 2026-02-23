@@ -1,0 +1,8 @@
+require("plugins.appearance")
+require("plugins.lsp")
+require("plugins.mini")
+require("plugins.snacks")
+require("plugins.treesitter")
+require("plugins.blink")
+require("plugins.ai")
+require("plugins.markdown")
