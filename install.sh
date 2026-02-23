@@ -10,8 +10,7 @@ DOTFILES=(
     .tmux.conf .tmux.conf.local .vimrc
     .config/starship.toml
     .config/nvim
-    .config/alacritty
-    .wezterm.lua
+    .config/mise
 )
 
 # Bootstrap installations
