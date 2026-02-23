@@ -6,8 +6,9 @@ vim.g.mapleader = " "
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.opt.colorcolumn = '80'
-vim.opt.number = true
---vim.opt.signcolumn = "auto"
+--vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "auto"
 vim.opt.wrap = false
 
 -- indent
@@ -36,12 +37,12 @@ vim.opt.hlsearch = false
 -- index folders for find command
 vim.opt.path = "**/*"
 vim.opt.wildignore:append(
-{
-    ".git/",
-    "build",
-    "coverage",
-    "dist",
-}
+    {
+        ".git/",
+        "build",
+        "coverage",
+        "dist",
+    }
 )
 
 -- diagnostics

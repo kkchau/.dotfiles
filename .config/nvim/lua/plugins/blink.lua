@@ -9,5 +9,20 @@ require('blink.cmp').setup({
         prebuilt_binaries = {
             download = true
         }
+    },
+    completion = {
+        ghost_text = {
+            enabled = true
+        },
+        list = {
+            selection = {
+                preselect = false
+            },
+        }
+    },
+    keymap = {
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' },
     }
 })
