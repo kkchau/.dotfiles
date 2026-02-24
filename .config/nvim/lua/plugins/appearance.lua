@@ -1,3 +1,3 @@
 -- Colorscheme
-vim.pack.add({"https://github.com/catppuccin/nvim"})
-vim.cmd.colorscheme('catppuccin-mocha')
+vim.pack.add({ "https://github.com/folke/tokyonight.nvim" })
+vim.cmd.colorscheme('tokyonight-night')

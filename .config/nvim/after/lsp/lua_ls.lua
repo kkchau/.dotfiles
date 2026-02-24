@@ -5,7 +5,10 @@ return {
             hint = false,
             runtime = {
                 version = "LuaJIT",
-            }
+            },
+            diagnostics = {
+                globals = { "vim", "require" },
+            },
         }
     },
     filetypes = { "lua" },

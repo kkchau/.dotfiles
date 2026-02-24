@@ -19,21 +19,3 @@ vim.api.nvim_set_keymap("n", "<leader>yp", "",
         end
     }
 )
-
--- LSP
-vim.api.nvim_set_keymap("n", "gd", "", {
-    noremap = true,
-    silent = true,
-    expr = false,
-    callback = function()
-        vim.lsp.buf.definition()
-    end
-})
-vim.api.nvim_set_keymap("n", "gr", "", {
-    noremap = true,
-    silent = true,
-    expr = false,
-    callback = function()
-        vim.lsp.buf.references()
-    end
-})
