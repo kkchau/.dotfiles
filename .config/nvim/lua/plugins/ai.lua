@@ -16,17 +16,21 @@ vim.api.nvim_set_keymap(
     "n",
     "<leader>oo",
     "",
-    { desc = "Execute opencode action…", callback =     function()
-        require("opencode").select()
-    end,
- }
+    {
+        desc = "Execute opencode action…",
+        callback = function()
+            require("opencode").select()
+        end,
+    }
 )
 vim.api.nvim_set_keymap(
     "n",
     "<leader>ot",
     "",
-    { desc = "Execute opencode action…", callback =     function()
-        require("opencode").toggle()
-    end,
- }
+    {
+        desc = "Execute opencode action…",
+        callback = function()
+            require("opencode").toggle()
+        end,
+    }
 )
