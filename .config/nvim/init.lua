@@ -21,13 +21,15 @@ local language_servers = {
     'groovyls',
     'html',
     'lua_ls',
-    --'pyright',
+    'oxfmt',
+    'oxlint',
     'ruff',
     'rust_analyzer',
     'sqls',
     'terraformls',
     'ts_ls',
     'ty',
+    --'pyright',
 }
 for _, server in ipairs(language_servers) do
     vim.lsp.enable(server)

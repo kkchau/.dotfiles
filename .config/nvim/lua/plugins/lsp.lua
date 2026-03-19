@@ -53,6 +53,8 @@ require('mason').setup({
         'groovyls',
         'html',
         'lua-language-server',
+        'oxlint',
+        'oxfmt',
         'pyright',
         'ruff',
         'rust_analyzer',
