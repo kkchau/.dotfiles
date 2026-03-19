@@ -6,11 +6,16 @@ INSTALL_DIR=$(pwd -P)
 source ./util.sh
 
 DOTFILES=(
-    .bashrc .zshrc .environment
-    .tmux.conf .tmux.conf.local .vimrc
-    .config/starship.toml
-    .config/nvim
+    .agents
+    .bashrc
     .config/mise
+    .config/nvim
+    .config/starship.toml
+    .environment
+    .tmux.conf
+    .tmux.conf.local
+    .vimrc
+    .zshrc
 )
 
 # Bootstrap installations
