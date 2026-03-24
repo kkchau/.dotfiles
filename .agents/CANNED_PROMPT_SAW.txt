@@ -1,0 +1,1 @@
+Work on <<INSERT TASK HERE>>. Create a new stacked branch for these changes. Strictly adhere to the /structured-agent-workflow skill. Adhere to the TDD loop defined in phase 4. Adhere to HITL checkpoints in SAW. Remember to load ~/.agents/AGENTS.md.
