@@ -25,6 +25,7 @@ Use this skill when writing and reading any code.
     - However, if you find that the present patterns are less maintainable, readable, and/or secure, develop using best practices, but call out these differences.
 - Always consider the security implications of your code and prefer to write secure code that protects against common vulnerabilities and attacks.
 - Develop to completeness, NEVER add stubs or placeholders. Address root causes rather than adding bandaids.
+- Always prefer strictness over defensiveness. Fail fast and loudly.
 
 ### Documentation
 
