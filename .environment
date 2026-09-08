@@ -49,5 +49,5 @@ export KUBECONFIG=~/.kube/config
 
 # Tool version managers ########################################################
 # Prefer mise over asdf
-[ -f $HOME/.local/bin/mise ] && eval "$($HOME/.local/bin/mise activate $(basename $SHELL))"
+#[ -f $HOME/.local/bin/mise ] && eval "$($HOME/.local/bin/mise activate $(basename $SHELL))"
 #export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

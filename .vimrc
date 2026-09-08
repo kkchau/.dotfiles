@@ -62,17 +62,10 @@ autocmd InsertLeave * :set relativenumber
 set termguicolors
 set background=dark
 colorscheme elflord
-let g:material_theme_style = 'darker'
-let g:material_terminal_italics = 0
-let g:airline_powerline_fonts=0
-let g:airline_theme='material'
 set term=xterm-256color
 
 " Status Line
 set laststatus=2
-let g:airline#extensions#tabline#enabled=1
-let g:airline_section_b = '%{strftime("%c")}'
-let g:airline_section_c = '%F'
 
 " Don't wrap text
 set nowrap
