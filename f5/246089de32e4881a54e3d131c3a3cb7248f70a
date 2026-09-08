@@ -1,0 +1,20 @@
+.bashrc
+  h_57426a24de22a5 2-5
+.environment
+  h_57426a24de22a5 52
+.tmux.conf
+  h_57426a24de22a5 4
+.zshrc
+  h_57426a24de22a5 16-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "f5246089de32e4881a54e3d131c3a3cb7248f70a",
+  "prompts": {},
+  "humans": {
+    "h_57426a24de22a5": {
+      "author": "Kevin Chau <kevin.chau@color.com>"
+    }
+  }
+}
